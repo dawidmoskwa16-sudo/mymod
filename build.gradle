@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.8-SNAPSHOT'
+    id 'fabric-loom' version '1.7.4'
     id 'maven-publish'
 }
 
@@ -12,10 +12,6 @@ base {
 
 repositories {
     mavenCentral()
-}
-
-loom {
-    splitEnvironmentSourceSets()
 }
 
 dependencies {
@@ -34,17 +30,13 @@ processResources {
     }
 }
 
-def targetJavaVersion = 21
 tasks.withType(JavaCompile).configureEach {
     it.options.encoding = "UTF-8"
-    it.options.release = targetJavaVersion
+    it.options.release = 21
 }
 
 java {
-    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
-    if (JavaVersion.current() < javaVersion) {
-        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
-    }
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
     withSourcesJar()
 }
 
