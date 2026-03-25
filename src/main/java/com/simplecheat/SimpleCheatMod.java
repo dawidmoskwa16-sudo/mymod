@@ -4,16 +4,16 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
+import net.minecraft.client.option.KeyMapping;
+import net.minecraft.client.util.InputConstants;
 import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
 
 public class SimpleCheatMod implements ClientModInitializer {
 
-    private static KeyBinding flyKey;
-    private static KeyBinding speedKey;
-    private static KeyBinding nofallKey;
+    private static KeyMapping flyKey;
+    private static KeyMapping speedKey;
+    private static KeyMapping nofallKey;
 
     private static boolean flyEnabled = false;
     private static boolean speedEnabled = false;
@@ -21,14 +21,14 @@ public class SimpleCheatMod implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        flyKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                "key.simplecheat.fly", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F, "category.simplecheat.cheats"
+        flyKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+                "key.simplecheat.fly", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_F, "category.simplecheat.cheats"
         ));
-        speedKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                "key.simplecheat.speed", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_G, "category.simplecheat.cheats"
+        speedKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+                "key.simplecheat.speed", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_G, "category.simplecheat.cheats"
         ));
-        nofallKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                "key.simplecheat.nofall", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_H, "category.simplecheat.cheats"
+        nofallKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+                "key.simplecheat.nofall", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_H, "category.simplecheat.cheats"
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
@@ -54,9 +54,9 @@ public class SimpleCheatMod implements ClientModInitializer {
                 client.player.sendMessage(Text.literal("§aNoFall: " + (nofallEnabled ? "§2ON" : "§cOFF")), false);
             }
 
-            // Speed hack - mocny boost
+            // Speed hack
             if (speedEnabled) {
-                double speed = 0.6; // możesz zmienić na wyższą wartość
+                double speed = 0.6;
                 if (client.player.forwardSpeed != 0 || client.player.sidewaysSpeed != 0) {
                     double yaw = Math.toRadians(client.player.getYaw());
                     double vx = -Math.sin(yaw) * speed * Math.signum(client.player.forwardSpeed) - Math.cos(yaw) * speed * client.player.sidewaysSpeed;

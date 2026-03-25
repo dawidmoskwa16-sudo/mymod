@@ -4,19 +4,11 @@
 	"version": "${version}",
 	"name": "Simple Cheat",
 	"description": "Prosty ale bardzo mocny cheat (fly + speed + nofall) na Fabric 1.21.4",
-	"authors": [
-		"ztirwe_"
-	],
-	"contact": {
-		"sources": "https://github.com/TWOJE-REPO"
-	},
+	"authors": ["Twój nick"],
+	"contact": { "sources": "https://github.com/TWOJE-REPO" },
 	"license": "MIT",
 	"environment": "client",
-	"entrypoints": {
-		"client": [
-			"com.simplecheat.SimpleCheatMod"
-		]
-	},
+	"entrypoints": { "client": ["com.simplecheat.SimpleCheatMod"] },
 	"depends": {
 		"fabricloader": ">=0.16.9",
 		"minecraft": "~1.21.4",
