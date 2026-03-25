@@ -1,7 +1,23 @@
-plugins {
-    id 'fabric-loom' version '1.7.4'
-    id 'maven-publish'
+buildscript {
+    repositories {
+        maven {
+            name = 'Fabric'
+            url = 'https://maven.fabricmc.net/'
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
 }
+
+
+// Wymuś generowanie źródeł przed kompilacją
+tasks.named('compileJava') {
+    dependsOn 'genSources'
+}
+
+// ... reszta jak wyżej
+
+
 
 version = project.mod_version
 group = project.maven_group
