@@ -1,18 +1,19 @@
 {
-	"schemaVersion": 1,
-	"id": "simplecheat",
-	"version": "${version}",
-	"name": "Simple Cheat",
-	"description": "Prosty ale bardzo mocny cheat (fly + speed + nofall) na Fabric 1.21.4",
-	"authors": ["Twój nick"],
-	"contact": { "sources": "https://github.com/TWOJE-REPO" },
-	"license": "MIT",
-	"environment": "client",
-	"entrypoints": { "client": ["com.simplecheat.SimpleCheatMod"] },
-	"depends": {
-		"fabricloader": ">=0.16.9",
-		"minecraft": "~1.21.4",
-		"java": ">=21",
-		"fabric-api": "*"
-	}
+  "schemaVersion": 1,
+  "id": "simpleesp",
+  "version": "1.0.0",
+  "name": "Simple ESP (naukowy)",
+  "description": "Najprostszy możliwy ESP - tylko dla celów edukacyjnych",
+  "authors": ["MatejBuda"],
+  "contact": {},
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["pl.matejbuda.esp.EspMod"]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.5",
+    "minecraft": "1.21.x",
+    "java": ">=21"
+  }
 }
