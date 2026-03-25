@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version "${loom_version}"
+	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
 	id 'maven-publish'
 }
 
@@ -8,6 +8,10 @@ group = project.maven_group
 
 base {
 	archivesName = project.archives_base_name
+}
+
+repositories {
+	// Loom sam dodaje wszystkie repozytoria Minecraft/Fabric – nie dodawaj nic
 }
 
 loom {
@@ -19,11 +23,6 @@ loom {
 			sourceSet sourceSets.client
 		}
 	}
-}
-
-repositories {
-	mavenCentral()
-	maven { url 'https://maven.fabricmc.net/' }
 }
 
 dependencies {
@@ -54,5 +53,14 @@ jar {
 	inputs.property "archivesName", project.base.archivesName
 	from("LICENSE") {
 		rename { "${it}_${inputs.properties.archivesName}"}
+	}
+}
+
+publishing {
+	publications {
+		create("mavenJava", MavenPublication) {
+			artifactId = project.archives_base_name
+			from components.java
+		}
 	}
 }
